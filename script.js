@@ -11,14 +11,29 @@ const saveInd = document.getElementById("saveIndex");
 addTaskButton.addEventListener("click", (e) => {
   e.preventDefault(); // This prevents the page from reloading.
   // start by setting a variable named todo to equal localstorage.getitem("todo")
-  // Add code below this line
+  // Add code below  this line
+  let todo = localStorage.getItem("todo");
 
   // check if todo is null, if it is set todoArray = []
   // else set todoArray to JSON.parse() your variable passed into the parse method.
 
+  if(todo === null) {
+    todoArray = [];
+  } else {
+    todoArray = JSON.parse(todo);
+  }
+
   // check if text.value is empty, alert that the input is empty and return
 
+  if(text.value === ''){
+    alert('input is empty');
+    return;
+  }
+  
+  
   // now that you've parsed the value, push the text.value to the todoArray.
+  todoArray.push(text.value);
+
   // set the text.value to an empty string.
   // get the localstorage method and use the setItem and pass in todo
   // and pass in JSON.stringify(todoArray).
@@ -49,6 +64,8 @@ function displayTodo() {
 
 function deleteTodo(ind) {
   // call the todo and let it equal localstorage.getitem("todo")
+
+
   // assign the todoArray equal to JSON.parse(todo)
   // use the todoArray and use the splice method on the ind and pass in 1 as well.
   // set the todo in local storage and use the JSON.stringify(todoArray)
